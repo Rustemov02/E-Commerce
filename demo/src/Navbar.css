@@ -1,0 +1,11 @@
+.navList {
+    list-style-type: none;
+    font-size: 20px;
+    padding: 0 10px;
+    color: gray;
+    cursor : pointer
+}
+
+.navActive { 
+    color: black
+}
