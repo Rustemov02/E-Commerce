@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Stack, Box, Typography, Link, Button } from '@mui/material'
+import { Stack, Box, Typography, Button } from '@mui/material'
+import { Link } from "react-router-dom";
 import { Login, HowToReg, ShoppingCart } from '@mui/icons-material';
 
 import './Navbar.css'
@@ -25,12 +26,11 @@ export default function Navbar() {
       {/* List */}
       <Box sx={{display: 'flex' , flexDirection : 'row' , alignItems : 'center'}}>
         {['Home', 'Products', 'About', 'Contact'].map((item, index) => (
-          <li  onClick={() => {
-            setActive(item.toLocaleLowerCase())
-            console.log(active)
-          }} className={`navList ${active == item.toLocaleLowerCase() && 'navActive'}`}>
+          <Link to={item == 'Home' ? '/' : item.toLowerCase()} key={index} onClick={() => {
+            setActive(item.toLocaleLowerCase()) 
+          }} className={`navList ${active == item.toLocaleLowerCase() && 'navActive'}`} style={{textDecoration : 'none'}}>
             {item}
-          </li>
+          </Link>
         ))}
       </Box>
 
