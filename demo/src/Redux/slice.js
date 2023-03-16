@@ -22,6 +22,7 @@ export const productSlice = createSlice({
     reducers: {
         getSelectedItem : (state , {payload}) => {
             state.selectedItem = state.data.filter( item => item.id == payload)  
+            // console.log(state.selectedItem)
         }
     },
     extraReducers: {

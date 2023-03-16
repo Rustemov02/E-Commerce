@@ -1,5 +1,4 @@
-import React from "react";
-import Navbar from './Navbar'
+import React from "react"; 
 import Home from './Home'
 import Products from './Products'
 
@@ -8,8 +7,7 @@ export default function Commerce() {
 
 
     return (
-        <>
-            <Navbar />
+        <> 
             <Home />
             <Products />
         </>

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Products() {
 
-    // const categories = ['All', 'Men\'s Clothing', 'Women\'s Clothing', 'Jewelery', 'Electronic']
+     
     const categories = [
         {
             title: 'All',
@@ -45,7 +45,8 @@ export default function Products() {
     }, [])
     return (
         <Stack py={10} direction='column' justifyContent='center' alignItems='center' spacing={5}>
-            <Button><Link to="/">Get Menu</Link></Button>
+
+              
             <Typography variant="h4" sx={{ fontWeight: 600 }}>Latest Products</Typography>
 
 
@@ -59,7 +60,7 @@ export default function Products() {
                         key={index}>
                         {item.title}
                     </Button>
-                ))}
+                ))} 
             </Box>
 
             <ProductItem />
