@@ -6,8 +6,8 @@ import Commerce from './Commerce'
 import Products from './Products'
 import About from './About'
 import Contact from './Contact'
-import Details from './Details'
-
+import Details from './Details' 
+import Cart from './Cart'
 
 export default function App() {
 
@@ -21,6 +21,7 @@ export default function App() {
         <Route path='/products/:id' element={<Details />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/cart' element={<Cart/>} />
       </Routes> 
       
     </Router>

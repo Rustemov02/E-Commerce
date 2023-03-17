@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Stack, Typography, Box, Rating } from "@mui/material";
+import { getCart } from "./Redux/slice";
 
 export default function Details() {
     const data = useSelector(state => state.product.selectedItem[0])
-
-
-
+    const dispatch = useDispatch()  
+    const [ active , setActive ] = useState(false)
+    const [ value , setValue ] = useState('Add To Cart')
     const styles = {
-        customButton: { 
-            border : "solid black 1px",
-            fontWeight : 600,
-            "&:hover":{
-                border : 'solid green 1px',
-                backgroundColor : "gray" 
+        customButton: {
+            border: "solid black 1px",
+            fontWeight: 600,
+            "&:hover": {
+                border: 'solid green 1px',
+                backgroundColor: "gray"
             }
         },
-        customLink: { 
-            textDecoration : 'none',
-            color : 'black' ,
-            '&:hover':{ 
-                color : 'white'
+        customLink: {
+            textDecoration: 'none',
+            color: 'black',
+            '&:hover': {
+                color: 'white'
             }
         }
     }
@@ -31,7 +32,7 @@ export default function Details() {
             <Box sx={{ width: '40%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img style={{ width: 340, height: 'auto' }} src={data.image} />
             </Box>
-
+            
             <Box sx={{ width: '60%' }}>
                 <Typography gutterBottom={true} variant='h5' sx={{ textTransform: 'uppercase', color: 'gray' }}>{data.category}</Typography>
                 <Typography variant="h3" sx={{ width: '80%', fontWeight: 'bolder', fontFamily: 'Open Sans' }}>{data.title}</Typography>
@@ -42,10 +43,13 @@ export default function Details() {
 
                 <Typography variant="h6" sx={{ color: 'gray', width: '70%' }}>{data.description}</Typography>
 
-                <Stack direction='row' justifyContent='flex-start' paddingTop={2} spacing={2}>
-                    {/* <NavLink to={`/products/${data.id}`} style={styles.customLink}>Add to Cart</NavLink> */}
-                    <Button sx={styles.customButton} variant="outlined" ><NavLink to={`/products/${data.id}`} style={styles.customLink}>Add to Cart</NavLink></Button>  
-                    <Button sx={styles.customButton} variant='outlined'><NavLink to={`/products/${data.id}`} style={styles.customLink}>Go to Cart</NavLink></Button>
+                <Stack direction='row' justifyContent='flex-start' paddingTop={2} spacing={2}> 
+                    <Button disabled={active} onClick={() => {
+                        dispatch(getCart(data))
+                        setActive(true)
+                        setValue('Added')   
+                    }} sx={styles.customButton} variant="outlined" ><NavLink to={`/products/${data.id}`} style={styles.customLink}>{value}</NavLink></Button>
+                    <Button sx={styles.customButton} variant='outlined'><NavLink to='/cart' style={styles.customLink}>Go to Cart</NavLink></Button>
                 </Stack>
             </Box>
         </Stack>

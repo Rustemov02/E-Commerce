@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Stack, Box, Typography, Button } from '@mui/material'
 import { Link } from "react-router-dom";
+import { Stack, Box, Typography, Button } from '@mui/material'
 import { Login, HowToReg, ShoppingCart } from '@mui/icons-material';
 
 import './Navbar.css'
+import { useSelector } from "react-redux";
 export default function Navbar() {
 
   const [active, setActive] = useState('home')
-
+  const value = useSelector(state => state.product.numberCart)
   const styles = {  
     customButton: {
       border: 'solid gray 1px',
@@ -37,7 +38,7 @@ export default function Navbar() {
       <Box>
         <Button startIcon={<Login />} sx={styles.customButton}>Login</Button>
         <Button startIcon={<HowToReg />} sx={styles.customButton}>Register</Button>
-        <Button startIcon={<ShoppingCart />} sx={styles.customButton}>Cart(0)</Button>
+        <Button startIcon={<ShoppingCart />} sx={styles.customButton}><Link style={{textDecoration : "none" , color : "black"}} to='/cart'>Cart({value})</Link></Button>
       </Box>
     </Stack>
   )
