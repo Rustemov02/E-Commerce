@@ -9,6 +9,7 @@ export default function Navbar() {
 
   const [active, setActive] = useState('home')
   const value = useSelector(state => state.product.numberCart)
+  
   const styles = {  
     customButton: {
       border: 'solid gray 1px',

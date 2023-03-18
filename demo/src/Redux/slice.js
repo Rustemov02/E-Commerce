@@ -15,22 +15,21 @@ export const productSlice = createSlice({
     initialState: {
         data: [],
         cart: [],
-        numberCart : 0,
-        isActive: true,// I'm using that for "Skeleton"...if was "true" then Skeleton is hide blah blah blah...
-        selectedItem: [],
-        
+        numberCart: 0,  // The number of items available on the card
+        isActive: true, // I'm using that for "Skeleton"...if was "true" then Skeleton is hide blah blah blah...
+        selectedItem: [],  // When I click on any item , it populates this data with its information 
+
     },
     reducers: {
         getSelectedItem: (state, { payload }) => {
-            state.selectedItem = state.data.filter(item => item.id == payload)
+            state.selectedItem = state.data.filter(item => item.id == payload) 
         },
-        getCart: (state, { payload }) => {  
+        getCart: (state, { payload }) => {
             state.cart = [
-                ...state.cart, { img: payload.image, title: payload.title, price: payload.price , count : 0 }
-            ] 
-            state.numberCart = state.cart.length 
-             
-        }
+                ...state.cart, { img: payload.image, title: payload.title, price: payload.price, count: 1 }
+            ]
+            state.numberCart = state.cart.length
+        } 
     },
     extraReducers: {
         // fulfilled  , pending , rejected
@@ -47,5 +46,5 @@ export const productSlice = createSlice({
 })
 
 
-export const { getSelectedItem, getCart } = productSlice.actions
+export const { getSelectedItem, getCart} = productSlice.actions
 export default productSlice.reducer
