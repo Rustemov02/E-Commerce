@@ -41,6 +41,9 @@ export const productSlice = createSlice({
 
         [fetchProduct.pending]: state => {
             state.isActive = false
+        } ,
+        [fetchProduct.rejected] : state => {
+            console.log('rejected')
         }
     }
 })

@@ -2,3 +2,19 @@ https://www.figma.com/file/uUl7V11aNnyFyAnGFV93Ed/E-Commerce-Website-(Community)
 
 1 => change Skeleton style(height)
 2 => Add Font Family
+
+
+
+old home => {
+
+       <Box sx={{width : 'fit-content' , position : 'absolute' , left : '60%' , top : '15%'}}>
+                <img src={model} style={styles.imgStyle}/>
+            </Box>
+
+            <Box>
+                <Typography sx={{color : theme.status.default , marginLeft : '30px' , paddingLeft : '50px' , fontSize : '80px'}}>New Season Arrivals </Typography>
+                <Typography sx={{ color : theme.status.default , marginLeft : '30px' , paddingLeft : '50px' ,fontSize : '50px'}}>Check out all the triends </Typography>
+            </Box> 
+
+
+}
