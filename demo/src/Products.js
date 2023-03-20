@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import ProductItem from "./ProductItem";
 import { Button, Stack, Typography, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProduct } from "./Redux/slice"; 
+import { fetchProduct } from "./Redux/slice";
 import ViewMore from "./ViewMore";
+import About from './About'
+import line from './images/line.svg'
 
 export default function Products() {
 
@@ -33,14 +35,19 @@ export default function Products() {
     const styles = {
         customButton: {
             border: 'solid #EB3223 2px',
-            backgroundColor : 'white',
+            backgroundColor: 'white',
             margin: '8px 10px',
             color: 'black',
-            transition : '0.5s',
-            '&:hover':{
-                border : "solid red 2px",
-                backgroundColor : '#EB3223'
+            transition: '0.5s',
+            '&:hover': {
+                border: "solid red 2px",
+                backgroundColor: '#EB3223'
             }
+        },
+        customLine: {
+            width: '850px',
+            margin: 'auto',
+            marginTop: 20
         }
     }
     const dispatch = useDispatch()
@@ -51,13 +58,13 @@ export default function Products() {
     }, [])
 
     return (
-        <Stack py={10} direction='column' justifyContent='center' alignItems='center' spacing={5}>
+        <Stack paddingTop={10} direction='column' justifyContent='center' spacing={5}>
 
 
-            <Typography variant="h4" sx={{ fontWeight: 600 }}>Latest Products</Typography>
+            <Typography variant="h4" sx={{ fontWeight: 600, margin: 'auto' }}>Latest Products</Typography>
+            <img src={line} style={styles.customLine} />
 
-
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                 {categories.map((item, index) => (
                     <Button
                         onClick={() => {
@@ -71,8 +78,8 @@ export default function Products() {
             </Box>
 
             <ProductItem />
-
-            <ViewMore/>
+            <ViewMore />
+            <About />
         </Stack>
     )
 }

@@ -12,8 +12,7 @@ export default function Commerce() {
         <> 
             <Home />
             <Announce/>
-            <Products />
-            <About/>
+            <Products /> 
         </>
     )
 }

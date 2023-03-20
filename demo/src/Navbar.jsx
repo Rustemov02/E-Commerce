@@ -27,7 +27,7 @@ export default function Navbar() {
 
       {/* List */}
       <Box sx={{display: 'flex' , flexDirection : 'row' , alignItems : 'center'}}>
-        {['Home', 'Products', 'About', 'Contact'].map((item, index) => (
+        {['Home', 'Products', 'Contact'].map((item, index) => (
           <Link to={item == 'Home' ? '/' : item.toLowerCase()} key={index} onClick={() => {
             setActive(item.toLocaleLowerCase()) 
           }} className={`navList ${active == item.toLocaleLowerCase() && 'navActive'}`} style={{textDecoration : 'none'}}>
@@ -36,9 +36,8 @@ export default function Navbar() {
         ))}
       </Box>
 
-      <Box>
-        <Button startIcon={<Login />} sx={styles.customButton}>Login</Button>
-        <Button startIcon={<HowToReg />} sx={styles.customButton}>Register</Button>
+      <Box> 
+        <Button startIcon={<HowToReg />} sx={styles.customButton}><Link style={{textDecoration : "none" , color : "black"}} to='/register'>Register / Login</Link></Button>
         <Button startIcon={<ShoppingCart />} sx={styles.customButton}><Link style={{textDecoration : "none" , color : "black"}} to='/cart'>Cart({value})</Link></Button>
       </Box>
     </Stack>
