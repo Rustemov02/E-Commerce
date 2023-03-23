@@ -53,10 +53,7 @@ export default function ProductItem() {
 
                 </Paper>
             ))
-            }
-
-
-
+            } 
         </Stack >
     )
 }

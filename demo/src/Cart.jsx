@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Box, Stack, Typography, Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
+import { increase } from "./Redux/slice";
 
 export default function Cart() {
 
     const dispatch = useDispatch()
     const cart = useSelector(state => state.product.cart)
     const filteredCart = cart.filter((item, index) => index == cart.findIndex(elem => elem.title == item.title)) // remove duplicate items from cart
-
- 
+    const actualImage = useSelector(state => state.product.actualImg)
+    const quantity = useSelector(state => state.product.quantity)
     return (
         <Stack py={5}>
 
@@ -20,9 +21,10 @@ export default function Cart() {
                         <Typography>{item.title}</Typography>
                         <Typography>{cart.count} X {item.price} = ${cart.count * item.price}</Typography>
                     </Box>
+                    <Button onClick={() => dispatch(increase(item.title))}>Increase</Button>
                 </Stack>
             ))}
-
+            <Button onClick={() => console.log(actualImage)}>Actual Img</Button>
         </Stack>
     )
 }
