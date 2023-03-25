@@ -15,10 +15,9 @@ export const productSlice = createSlice({
     initialState: {
         data: [],
         cart: [],
-        numberCart: 0,  // The number of items available on the card
+        // numberCart: 0,  // The number of items available on the card
         isActive: true, // I'm using that for "Skeleton"...if was "true" then Skeleton is hide blah blah blah...
         selectedItem: [],  // When I click on any item , it populates this data with its information 
-        actualImg: 'deneme',
         quantityOfCartItem: []
     },
     reducers: {
@@ -34,12 +33,16 @@ export const productSlice = createSlice({
         increase: (state, { payload }) => {
             state.quantityOfCartItem = state.cart.filter((item => item.title == payload))
             state.quantityOfCartItem[0].quantity += 1
-            console.log(state.quantityOfCartItem)
-            console.log(state.quantityOfCartItem[0].quantity)
-
-            // console.log(payload)
-            // console.log(state.cart[1].title)
+        },
+        decrease: (state, { payload }) => {
+            state.quantityOfCartItem = state.cart.filter((item => item.title == payload))
+            if (state.quantityOfCartItem[0].quantity > 1 || state.quantityOfCartItem[0].quantity == 2) {
+                state.quantityOfCartItem[0].quantity -= 1
+            } else {
+                state.cart = state.cart.filter(item => item.title !== payload)
+            }
         }
+
     },
     extraReducers: {
         // fulfilled  , pending , rejected
@@ -47,18 +50,15 @@ export const productSlice = createSlice({
         [fetchProduct.fulfilled]: (state, { payload }) => {
             state.data = payload
             state.isActive = true
-            console.log('fulfilled')
         },
         [fetchProduct.pending]: state => {
             state.isActive = true
-            console.log('pending')
         },
         [fetchProduct.rejected]: state => {
-           console.log('rejected') 
         }
     }
 })
 
 
-export const { getSelectedItem, getCart, increase } = productSlice.actions
+export const { getSelectedItem, getCart, increase, decrease } = productSlice.actions
 export default productSlice.reducer

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 export default function Navbar() {
 
   const [active, setActive] = useState('home')
-  const value = useSelector(state => state.product.numberCart)
+  const cart = useSelector(state => state.product.cart)
   
   const styles = {  
     customButton: {
@@ -38,7 +38,7 @@ export default function Navbar() {
 
       <Box> 
         <Button startIcon={<HowToReg />} sx={styles.customButton}><Link style={{textDecoration : "none" , color : "black"}} to='/register'>Register / Login</Link></Button>
-        <Button startIcon={<ShoppingCart />} sx={styles.customButton}><Link style={{textDecoration : "none" , color : "black"}} to='/cart'>Cart({value})</Link></Button>
+        <Button startIcon={<ShoppingCart />} sx={styles.customButton}><Link style={{textDecoration : "none" , color : "black"}} to='/cart'>Cart({cart.length})</Link></Button>
       </Box>
     </Stack>
   )
