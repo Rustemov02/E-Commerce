@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Stack, Box, Typography, Button, createTheme, ThemeProvider, TextField } from '@mui/material'
 import model from './images/model-man.png'
 import { orange, purple } from '@mui/material/colors'
 import { ManageSearch, Tune } from '@mui/icons-material/';
-import commerce from './images/commerce.svg' 
+import commerce from './images/commerce.svg'
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
- 
+
 
 export default function Home() {
     const theme = createTheme({
@@ -21,8 +21,8 @@ export default function Home() {
                 light: '#42a5f5'
             }
         },
-        customFont : {
-            
+        customFont: {
+
         },
         typography: {
             fontFamily: [
@@ -35,6 +35,7 @@ export default function Home() {
             width: 450
         }
     }
+    const [value , setValue ] = useEffect('')
 
     return (
         <ThemeProvider theme={theme}>
@@ -47,6 +48,10 @@ export default function Home() {
                         <OutlinedInput
                             sx={{ border: 'solid red 3px ', borderRadius: 40, px: 4 }}
                             placeholder='Search for any product'
+                            value={value}
+                            onChange={(e)=>{
+                                setValue(e.target.value)    
+                            }}
 
                             startAdornment={
                                 <InputAdornment position="end" sx={{ marginRight: 2 }}>

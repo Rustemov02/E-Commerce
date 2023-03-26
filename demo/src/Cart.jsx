@@ -16,10 +16,10 @@ export default function Cart() {
         <Stack py={5}>
 
             {cart.length > 0 ? (
-                <Stack border={1} direction='column' justifyContent='space-around' alignItems='space-around'>
+                <Stack direction='column' justifyContent='space-around' alignItems='space-around'>
                     {filteredCart.map((item, index) => (
-                        <Stack key={index} direction='row' alignItems='center' justifyContent='center' spacing={5} py={3}>
-                            <img style={{ width: 250 , height : 350}} src={item.img} />
+                        <Stack key={index} direction='row' alignItems='center' justifyContent='center' spacing={5} py={3} my={4} bgcolor='#ebf1f5' borderRadius={5}>
+                            <img style={{ width: 250, height: 350, borderRadius: 20, padding: 10 }} src={item.img} />
 
                             <Stack width={450}>
                                 <Box >
@@ -28,8 +28,8 @@ export default function Cart() {
                                 </Box>
 
                                 <Stack direction='row' spacing={3} justifyContent='flex-start' my={2}>
-                                    <Button sx={{fontSize : 20}} variant='contained' onClick={() => dispatch(decrease(item.title))}>-</Button>
-                                    <Button size="small" sx={{fontSize : 20}} variant="contained" onClick={() => dispatch(increase(item.title))}>+</Button>
+                                    <Button size="small" sx={{ fontSize: 45, height: 40, color: 'black', borderColor: 'black' }} variant='outlined' onClick={() => dispatch(decrease(item.title))}>-</Button>
+                                    <Button size="small" sx={{ height: 40, fontSize: 45, color: 'black', borderColor: 'black' }} variant="outlined" onClick={() => dispatch(increase(item.title))}>+</Button>
                                 </Stack>
 
                             </Stack>
@@ -40,7 +40,7 @@ export default function Cart() {
 
                 </Stack>
             ) : (
-                <div> Your Cart is Empty </div>
+                <Stack bgcolor='#ebf1f5' height='40vh' px={12} py={12}  > <Typography fontSize={40} >Your Cart is Empty</Typography> </Stack>
             )}
 
 
