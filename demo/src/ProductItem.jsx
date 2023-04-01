@@ -2,7 +2,7 @@ import { Button, Stack, Box, Paper, Typography, CircularProgress, Skeleton } fro
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getSelectedItem ,getCart } from "./Redux/slice";
+import { getSelectedItem, getCart } from "./Redux/slice";
 
 
 export default function ProductItem() {
@@ -32,28 +32,37 @@ export default function ProductItem() {
     const products = useSelector(state => state.product.data)
     const isActive = useSelector(state => state.product.isActive)
     const dispatch = useDispatch()
-    
+    const Loading = () => {
+        return (
+            <Stack direction='row' justifyContent='space-evenly' spacing={3}>
+                <Skeleton width={230} height={650} />
+                <Skeleton width={230} height={650} />
+                <Skeleton width={230} height={650} />
+                <Skeleton width={230} height={650} />
+            </Stack>
+        )
+    }
 
     return (
         <Stack direction='row' flexWrap='wrap' justifyContent='center' gap={2}>
 
-
-            {products.map((item, index) => (    
+            {isActive ? (products.map((item, index) => (
                 <Paper key={index} elevation={3} sx={styles.customPaper}>
-                    
-                    {isActive ? <img style={{ width: 200, height: 270 }} src={item.image} /> : <CircularProgress />}
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        {isActive ? <Typography sx={styles.typography}>{item.title}</Typography> : <Skeleton variant="text" sx={{ height: 30, width: 220 }} />}
-                        {isActive ? <Typography sx={{ fontSize: 23, fontWeight: 700 , color : '#EB3223' }}>${item.price}</Typography> : <Skeleton variant="text" sx={{ height: 30, width: 220 }} />}
 
-                    </Box>  
-                    {isActive ? <Button onClick={() => { 
-                        dispatch(getSelectedItem(item.id)) 
-                    }} sx={styles.customButton} ><Link to={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'black' }}>Buy Now</Link></Button> : <Skeleton variant="text" sx={{ height: 50, width: '30%' }} />}
+                    <img style={{ width: 200, height: 270 }} src={item.image} />
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Typography sx={styles.typography}>{item.title}</Typography>
+                        <Typography sx={{ fontSize: 23, fontWeight: 700, color: '#EB3223' }}>${item.price}</Typography>
+                    </Box>
+                    <Button onClick={() => {
+                        dispatch(getSelectedItem(item.id))
+                    }} sx={styles.customButton} ><Link to={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'black' }}>Buy Now</Link></Button>
 
                 </Paper>
-            ))
-            } 
+            ))) : <Loading />}
+
+
+
         </Stack >
     )
 }

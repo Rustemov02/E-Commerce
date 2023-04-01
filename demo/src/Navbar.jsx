@@ -4,9 +4,11 @@ import { Stack, Box, Typography, Button } from '@mui/material'
 import { Login, HowToReg, ShoppingCart } from '@mui/icons-material';
 
 import './Navbar.css'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeMode } from "./Redux/slice";
 export default function Navbar() {
 
+  const dispatch = useDispatch()
   const [active, setActive] = useState('home')
   const cart = useSelector(state => state.product.cart)
   
@@ -39,6 +41,7 @@ export default function Navbar() {
       <Box> 
         <Button startIcon={<HowToReg />} sx={styles.customButton}><Link style={{textDecoration : "none" , color : "black"}} to='/register'>Register / Login</Link></Button>
         <Button startIcon={<ShoppingCart />} sx={styles.customButton}><Link style={{textDecoration : "none" , color : "black"}} to='/cart'>Cart({cart.length})</Link></Button>
+        <Button onClick={()=>dispatch(changeMode())}>Mode</Button>
       </Box>
     </Stack>
   )

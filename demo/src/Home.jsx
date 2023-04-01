@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
-import { Stack, Box, Typography, Button, createTheme, ThemeProvider, TextField } from '@mui/material'
+import React, { useState } from 'react'
+import { Stack, Box, Typography, Button, createTheme, ThemeProvider, TextField, List, ListItem, ListItemText } from '@mui/material'
 import model from './images/model-man.png'
 import { orange, purple } from '@mui/material/colors'
-import { ManageSearch, Tune } from '@mui/icons-material/';
+import { ManageSearch, QueryStatsRounded, QueryStatsTwoTone, Tune } from '@mui/icons-material/';
 import commerce from './images/commerce.svg'
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
-
+import { useSelector } from 'react-redux'
 
 export default function Home() {
+    const data = useSelector(state => state.product.data)
     const theme = createTheme({
         status: {
             danger: orange[500],
@@ -30,12 +31,20 @@ export default function Home() {
             ].join(','),
         }
     })
-    const styles = {
-        imgStyle: {
-            width: 450
+    const [resultsSearch, setResultsSearch] = useState([])
+
+    function getResults(e) {
+        const query = e.target.value
+
+        if (query.length != 0) {
+            const matchingSearh = data.filter(item =>  item.title.toLowerCase().includes(query.toLowerCase()) || item.category.toLowerCase().includes(query.toLowerCase()) )
+
+            setResultsSearch(matchingSearh)
+        } else{
+            setResultsSearch([])
         }
+
     }
-    const [value , setValue ] = useEffect('')
 
     return (
         <ThemeProvider theme={theme}>
@@ -48,10 +57,8 @@ export default function Home() {
                         <OutlinedInput
                             sx={{ border: 'solid red 3px ', borderRadius: 40, px: 4 }}
                             placeholder='Search for any product'
-                            value={value}
-                            onChange={(e)=>{
-                                setValue(e.target.value)    
-                            }}
+
+                            onChange={getResults}
 
                             startAdornment={
                                 <InputAdornment position="end" sx={{ marginRight: 2 }}>
@@ -72,6 +79,23 @@ export default function Home() {
 
                 <img src={commerce} />
 
+
+                <Stack>
+                    {/* {resultsSearch.map((item, index) => (
+                        <Box key={index}>
+                            <Typography>{item.title}</Typography>
+                        </Box>
+                    ))} */}
+                    <List>
+                        {resultsSearch.map((item, index) => (
+                            <ListItem key={index} sx={{ border: 'solid black 1px', mx: 1, display: 'flex', flexDirection: 'column' }}>
+                                <Typography>{item.title}</Typography>
+                                <Typography>{item.category}</Typography>
+                                {/* <ListItemText primary={product.name} secondary={product.category} /> */}
+                            </ListItem>
+                        ))}
+                    </List>
+                </Stack>
             </Stack>
         </ThemeProvider>
     )

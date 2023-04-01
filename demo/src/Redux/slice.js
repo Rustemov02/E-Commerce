@@ -14,9 +14,9 @@ export const productSlice = createSlice({
     name: 'product',
     initialState: {
         data: [],
-        cart: [],
-        // numberCart: 0,  // The number of items available on the card
+        cart: [], 
         isActive: true, // I'm using that for "Skeleton"...if was "true" then Skeleton is hide blah blah blah...
+        mode : false ,
         selectedItem: [],  // When I click on any item , it populates this data with its information 
         quantityOfCartItem: []
     },
@@ -41,6 +41,9 @@ export const productSlice = createSlice({
             } else {
                 state.cart = state.cart.filter(item => item.title !== payload)
             }
+        },
+        changeMode : (state) => {
+            state.mode = !state.mode 
         }
 
     },
@@ -52,13 +55,15 @@ export const productSlice = createSlice({
             state.isActive = true
         },
         [fetchProduct.pending]: state => {
-            state.isActive = true
+            state.isActive = false
         },
         [fetchProduct.rejected]: state => {
+            state.isActive = false
+            alert('you may not have a connection')
         }
     }
 })
 
 
-export const { getSelectedItem, getCart, increase, decrease } = productSlice.actions
+export const { getSelectedItem, getCart, increase, decrease , changeMode } = productSlice.actions
 export default productSlice.reducer

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ProductItem from "./ProductItem";
-import { Button, Stack, Typography, Box } from "@mui/material";
+import { Button, Stack, Typography, Box, ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "./Redux/slice";
 import ViewMore from "./ViewMore";
@@ -8,8 +8,12 @@ import About from './About'
 import line from './images/line.svg'
 
 export default function Products() {
-
-
+    const mode = useSelector(state => state.product.mode)
+    const theme = createTheme({
+        palette: {
+            mode: mode ? 'dark' : 'light'
+        }
+    })
     const categories = [
         {
             title: 'All',
@@ -58,28 +62,31 @@ export default function Products() {
     }, [])
 
     return (
-        <Stack paddingTop={10} direction='column' justifyContent='center' spacing={5}>
+        <ThemeProvider theme={theme}>
+            <CssBaseline/>
+            <Stack paddingTop={10} direction='column' justifyContent='center' spacing={5}>
 
 
-            <Typography variant="h4" sx={{ fontWeight: 600, margin: 'auto' }}>Latest Products</Typography>
-            <img src={line} style={styles.customLine} />
+                <Typography variant="h4" sx={{ fontWeight: 600, margin: 'auto' }}>Latest Products</Typography>
+                <img src={line} style={styles.customLine} />
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-                {categories.map((item, index) => (
-                    <Button
-                        onClick={() => {
-                            dispatch(fetchProduct(item.link))
-                        }}
-                        sx={styles.customButton}
-                        key={index}>
-                        {item.title}
-                    </Button>
-                ))}
-            </Box>
+                <Box sx={{ display: 'flex', flexDirection: 'row', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                    {categories.map((item, index) => (
+                        <Button
+                            onClick={() => {
+                                dispatch(fetchProduct(item.link))
+                            }}
+                            sx={styles.customButton}
+                            key={index}>
+                            {item.title}
+                        </Button>
+                    ))}
+                </Box>
 
-            <ProductItem />
-            <ViewMore />
-            <About />
-        </Stack>
+                <ProductItem />
+                <ViewMore />
+                <About />
+            </Stack>
+        </ThemeProvider>
     )
 }
