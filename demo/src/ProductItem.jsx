@@ -6,10 +6,13 @@ import { getSelectedItem, getCart } from "./Redux/slice";
 
 
 export default function ProductItem() {
+    const mode = useSelector(state => state.product.mode)
+
     const styles = {
         customPaper: {
             width: 300,
             display: 'flex',
+            padding : '12px 0px',
             flexDirection: 'column',
             alignItems: "center",
             justifyContent: 'space-evenly',
@@ -24,9 +27,10 @@ export default function ProductItem() {
             whiteSpace: 'nowrap'
         },
         customButton: {
-            border: 'solid gray 2px',
-            margin: '8px 10px',
-            color: 'black',
+            // border: 'solid gray 2px',
+            border: 'solid #EB3223 2px',
+            margin: '8px 10px', 
+            backgroundColor: mode ? 'black' : 'white' 
         }
     }
     const products = useSelector(state => state.product.data)
@@ -47,7 +51,7 @@ export default function ProductItem() {
         <Stack direction='row' flexWrap='wrap' justifyContent='center' gap={2}>
 
             {isActive ? (products.map((item, index) => (
-                <Paper key={index} elevation={3} sx={styles.customPaper}>
+                <Paper key={index} elevation={10} sx={styles.customPaper}>
 
                     <img style={{ width: 200, height: 270 }} src={item.image} />
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -56,7 +60,7 @@ export default function ProductItem() {
                     </Box>
                     <Button onClick={() => {
                         dispatch(getSelectedItem(item.id))
-                    }} sx={styles.customButton} ><Link to={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'black' }}>Buy Now</Link></Button>
+                    }} sx={styles.customButton} ><Link to={`/products/${item.id}`} style={{ textDecoration: 'none' , color : mode ? 'white' : 'black'}}>Buy Now</Link></Button>
 
                 </Paper>
             ))) : <Loading />}

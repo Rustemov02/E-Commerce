@@ -10,6 +10,7 @@ import line from './images/line.svg'
 export default function Products() {
     const mode = useSelector(state => state.product.mode)
     const theme = createTheme({
+        mode : mode ? 'dark' : 'light', 
         palette: {
             mode: mode ? 'dark' : 'light'
         }
@@ -39,9 +40,9 @@ export default function Products() {
     const styles = {
         customButton: {
             border: 'solid #EB3223 2px',
-            backgroundColor: 'white',
+            backgroundColor: mode ? 'black' : 'white',
             margin: '8px 10px',
-            color: 'black',
+            color:  mode ? 'white' : 'black',
             transition: '0.5s',
             '&:hover': {
                 border: "solid red 2px",

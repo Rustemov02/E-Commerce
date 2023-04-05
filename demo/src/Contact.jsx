@@ -1,27 +1,34 @@
 import React from "react";
-import { Button, Paper, Stack, Typography, Box, ThemeProvider, createTheme, TextField } from "@mui/material";
+import { Button, Paper, Stack, Typography, Box, ThemeProvider, createTheme, TextField, CssBaseline } from "@mui/material";
 import { Link, Route, Router, Routes } from "react-router-dom";
 import Details from "./Details";
 import { LocalPhoneOutlined, EmailOutlined, LocationOn, Instagram, Twitter, LinkedIn } from '@mui/icons-material/';
+import { useSelector } from "react-redux";
 
 export default function Contact() {
 
+    const mode = useSelector(state => state.product.mode)
+
     const theme = createTheme({
-        typography: {
-            fontFamily: 'Poppins'
-        },
-        customIcons: {
-            color: 'white',
-            transition: '0.3s',
-            cursor: 'pointer',
-            '&:hover': {
-                backgroundColor: 'red'
+        palette: {
+            mode: mode ? 'dark' : 'light',
+            typography: {
+                fontFamily: 'Poppins',
+            },
+            customIcons: {
+                color: 'white',
+                transition: '0.3s',
+                cursor: 'pointer',
+                '&:hover': {
+                    color: 'gray'
+                }
             }
         }
     })
 
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline />
             <Stack py={5}>
 
                 <Stack alignItems='center'>
@@ -29,11 +36,11 @@ export default function Contact() {
                     <Typography fontSize={18} fontWeight={500} color='#717171'>Any question or remarks? Just write us a message!</Typography>
                 </Stack>
 
-                <Paper elevation={5} sx={{ width : '80%' ,margin : 'auto' , display : 'flex' , flexDirection : 'row'  , alignItems : 'center' , justifyContent : 'space-around' , my : 4}}>
-                
-                    <Stack bgcolor='#000000' direction='column' justifyContent='space-between' spacing={6} py={4} px={5} my={1} height={450} width={350} borderRadius={3}>
+                <Paper elevation={5} sx={{ width: '80%', margin: 'auto', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', my: 4 }}>
+
+                    <Stack bgcolor='#000000' direction='column' justifyContent='space-between' spacing={6} py={4} px={5} my={1} height={450}  borderRadius={3}>
                         <Box>
-                            <Typography color='#ffffff' fontSize={28}>Contact Information</Typography>
+                            <Typography color='#ffffff' fontSize={34} >Contact Information</Typography>
                             <Typography color='#C9C9C9'>Say something to start a live chat!</Typography>
                         </Box>
 
@@ -55,9 +62,9 @@ export default function Contact() {
                         </Stack>
 
                         <Stack direction='row' spacing={2}>
-                            <Instagram style={theme.customIcons} />
-                            <Twitter style={theme.customIcons} />
-                            <LinkedIn style={theme.customIcons} />
+                            <Instagram sx={theme.palette.customIcons} />
+                            <Twitter sx={theme.palette.customIcons} />
+                            <LinkedIn sx={theme.palette.customIcons} />
                         </Stack>
 
                     </Stack>
