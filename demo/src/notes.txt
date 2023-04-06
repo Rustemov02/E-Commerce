@@ -1,1 +1,3 @@
-3 => Add Dark mode 
+Mobil cihazlar: 320px - 480px
+Tabletler: 768px - 1024px
+Masaüstü bilgisayarlar: 1366px - 1920px

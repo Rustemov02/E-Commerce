@@ -1,8 +1,8 @@
 import { Button, Stack, Box, Paper, Typography, CircularProgress, Skeleton } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {NavLink } from "react-router-dom";
-import { getSelectedItem, getCart } from "./Redux/slice";
+import { NavLink } from "react-router-dom";
+import { getSelectedItem } from "./Redux/slice";
 
 
 export default function ProductItem() {
@@ -12,7 +12,7 @@ export default function ProductItem() {
         customPaper: {
             width: 300,
             display: 'flex',
-            padding : '12px 0px',
+            padding: '12px 0px',
             flexDirection: 'column',
             alignItems: "center",
             justifyContent: 'space-evenly',
@@ -29,8 +29,8 @@ export default function ProductItem() {
         customButton: {
             // border: 'solid gray 2px',
             border: 'solid #EB3223 2px',
-            margin: '8px 10px', 
-            backgroundColor: mode ? 'black' : 'white' 
+            margin: '8px 10px',
+            backgroundColor: mode ? 'black' : 'white'
         }
     }
     const products = useSelector(state => state.product.data)
@@ -60,7 +60,7 @@ export default function ProductItem() {
                     </Box>
                     <Button onClick={() => {
                         dispatch(getSelectedItem(item.id))
-                    }} sx={styles.customButton} ><NavLink to={`/products/${item.id}`} style={{ textDecoration: 'none' , color : mode ? 'white' : 'black'}}>Buy Now</NavLink></Button>
+                    }} sx={styles.customButton} ><NavLink to={`/products/${item.id}`} style={{ textDecoration: 'none', color: mode ? 'white' : 'black' }}>Buy Now</NavLink></Button>
 
                 </Paper>
             ))) : <Loading />}

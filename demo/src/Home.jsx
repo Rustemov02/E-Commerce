@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Stack, Box, Typography, Button, createTheme, ThemeProvider, TextField, List, ListItem, ListItemText, CssBaseline, Backdrop } from '@mui/material'
-import model from './images/model-man.png'
+import { NavLink } from 'react-router-dom'
+import { Stack,Button ,Typography, createTheme, ThemeProvider, List, ListItem, CssBaseline } from '@mui/material'
 import { orange, purple } from '@mui/material/colors'
 import { ManageSearch, Tune } from '@mui/icons-material/';
 import commerce from './images/commerce.svg'
@@ -71,15 +71,25 @@ export default function Home() {
                                     <Tune sx={{ fontSize: 35 }} />
                                 </InputAdornment>
                             }
-                        /> 
-                    </FormControl>
+                        />
+                    </FormControl>  
 
                     <Stack sx={{ color: mode ? 'white' : 'black', width: '550px', height: '250px', overflow: 'auto' }}>
                         <List>
                             {resultsSearch.map((item, index) => (
-                                <ListItem key={index} sx={{ border: 'solid black 1px', mx: 1, display: 'flex', flexDirection: 'column' ,alignItems : 'center' , width : '500px' }}>
-                                    <Typography>{item.title}</Typography>
-                                    <Typography>{item.category}</Typography>
+                                <ListItem key={index} sx={{ width: '500px' }}>
+                                    <Stack direction='row' alignItems='center' spacing={1} justifyContent='space-evenly'>
+                                        <img src={item.image} height={50} width={50} />
+
+                                        <Stack direction='column' alignItems='flex-start' border={1} p={1}>
+                                        {/* to={`/products/${item.id}`} */}
+                                            <NavLink to='/products' style={{ textDecoration: "none", color: mode ? 'white' : "black" }}>
+                                                <Typography variant='h6' sx={{ textOverflow: 'ellipsis', overflow: "hidden", width: '400px', whiteSpace: 'nowrap' }} >{item.title}</Typography>
+                                                <Typography variant='subtitle1'>{item.category}</Typography>
+                                            </NavLink>
+                                        </Stack>
+
+                                    </Stack>
                                 </ListItem>
                             ))}
                         </List>
@@ -89,8 +99,6 @@ export default function Home() {
                 </Stack>
 
                 <img src={commerce} />
-
-
 
             </Stack>
         </ThemeProvider>

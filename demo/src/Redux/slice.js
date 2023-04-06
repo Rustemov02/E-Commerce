@@ -16,7 +16,7 @@ export const productSlice = createSlice({
         data: [],
         cart: [], 
         isActive: true, // I'm using that for "Skeleton"...if was "true" then Skeleton is hide blah blah blah...
-        mode : false , 
+        mode : false , // dark-light mode..
         selectedItem: [],  // When I click on any item , it populates this data with its information 
         quantityOfCartItem: []
     },
@@ -44,7 +44,6 @@ export const productSlice = createSlice({
         },
         changeMode : (state) => {
             state.mode = !state.mode 
-            console.log(state.mode)
         }
 
     },

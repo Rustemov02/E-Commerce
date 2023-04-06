@@ -19,8 +19,8 @@ export default function Commerce() {
             <CssBaseline/>
             <>
                 <Home />
-                <Announce />
-                <Products />
+                {/* <Announce />
+                <Products /> */}
             </>
         </ThemeProvider>
     )

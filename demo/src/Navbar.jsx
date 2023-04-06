@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Stack, Box, Typography, Button } from '@mui/material'
-import { Login, HowToReg, ShoppingCart } from '@mui/icons-material';
+import { Login, HowToReg, ShoppingCart, LightMode, DarkMode, Light } from '@mui/icons-material';
 
 import './Navbar.css'
 import { useDispatch, useSelector } from "react-redux";
 import { changeMode } from "./Redux/slice";
 
-import Register from './Register'
 
 export default function Navbar() {
 
@@ -16,18 +15,12 @@ export default function Navbar() {
   const cart = useSelector(state => state.product.cart)
   const mode = useSelector(state => state.product.mode)
 
-  const styles = {
-    customButton: {
-      border: 'solid gray 1px',
-      margin: '12px 10px',
-    }
-  }
   return (
-    <Stack direction='row' justifyContent='space-evenly' alignItems='center' bgcolor={mode ? 'black' : 'white'}>
+    <Stack p={2} direction='row' flexWrap='wrap' justifyContent='space-evenly' alignItems='center' bgcolor={mode ? 'black' : 'white'}  >
 
       {/* Logo */}
       <Box>
-        <Typography sx={{ fontWeight: 600, fontSize: 30 , color : mode ? 'white' : 'black' }}>LA COLLECTION</Typography>
+        <Typography sx={{ fontWeight: 600, fontSize: 30, color: mode ? 'white' : 'black' }}>LA COLLECTION</Typography>
       </Box>
 
       {/* List */}
@@ -41,10 +34,12 @@ export default function Navbar() {
         ))}
       </Box>
 
-      <Stack spacing={2} direction='row'>  
-        <Button startIcon={<HowToReg />} variant="contained" to='/register' ><NavLink style={{ textDecoration: "none", color: mode ? "black" : 'white' }} to='/register'>Register / Login</NavLink></Button>
-        <Button startIcon={<ShoppingCart />} variant="contained" to='/register' ><NavLink style={{ textDecoration: "none", color: mode ? "black" : 'white' }} to='/cart'>Cart({cart.length})</NavLink></Button>
-        <Button onClick={() => dispatch(changeMode())} sx={{position : 'fixed' , top : '50px', left : '70px'}}>Mode</Button>
+      <Stack spacing={2} direction='row'>
+        <Button startIcon={<HowToReg style={{ color: 'red' }} />} variant="outlined" to='/register' style={{ border: "solid red 1px" }}  ><NavLink style={{ textDecoration: "none", color: mode ? "white" : 'black' }} to='/register'>Register / Login</NavLink></Button>
+        <Button startIcon={<ShoppingCart style={{ color: 'red' }} />} variant="outlined" to='/register' style={{ border: "solid red 1px" }}><NavLink style={{ textDecoration: "none", color: mode ? "white" : 'black' }} to='/cart'>Cart({cart.length})</NavLink></Button>
+        <Button onClick={() => dispatch(changeMode())} >
+          {mode ? < LightMode sx={{ color: 'red' }} /> : <DarkMode sx={{ color: 'red' }} />}
+        </Button>
       </Stack>
     </Stack>
   )
