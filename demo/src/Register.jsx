@@ -1,11 +1,10 @@
 import React from "react";
 import { Stack, Typography, Box, TextField, Button, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import rafiki from './images/rafiki.svg'
 import { Google } from "@mui/icons-material";
 import About from "./About";
 import { useSelector } from "react-redux";
-import { orange } from '@mui/material/colors'
 
 export default function Register() {
     const mode = useSelector(state => state.product.mode)

@@ -1,7 +1,5 @@
 import React from "react";
 import { Button, Paper, Stack, Typography, Box, ThemeProvider, createTheme, TextField, CssBaseline } from "@mui/material";
-import { Link, Route, Router, Routes } from "react-router-dom";
-import Details from "./Details";
 import { LocalPhoneOutlined, EmailOutlined, LocationOn, Instagram, Twitter, LinkedIn } from '@mui/icons-material/';
 import { useSelector } from "react-redux";
 

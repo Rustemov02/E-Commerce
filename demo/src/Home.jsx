@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { Stack, Box, Typography, Button, createTheme, ThemeProvider, TextField, List, ListItem, ListItemText, CssBaseline, Backdrop } from '@mui/material'
 import model from './images/model-man.png'
 import { orange, purple } from '@mui/material/colors'
-import { ManageSearch, QueryStatsRounded, QueryStatsTwoTone, Tune } from '@mui/icons-material/';
+import { ManageSearch, Tune } from '@mui/icons-material/';
 import commerce from './images/commerce.svg'
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import { useSelector } from 'react-redux'
-import CircularProgress from '@mui/material/CircularProgress'
 
 export default function Home() {
     const data = useSelector(state => state.product.data)
@@ -71,21 +70,20 @@ export default function Home() {
                                 <InputAdornment position="end">
                                     <Tune sx={{ fontSize: 35 }} />
                                 </InputAdornment>
-                            } 
-                        />
-
-                        <Stack sx={{ color: 'black'}}>
-                            <List>
-                                {resultsSearch.map((item, index) => (
-                                    <ListItem key={index} sx={{ border: 'solid black 1px', mx: 1, display: 'flex', flexDirection: 'column' }}>
-                                        <Typography>{item.title}</Typography>
-                                        <Typography>{item.category}</Typography>
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Stack>
-
+                            }
+                        /> 
                     </FormControl>
+
+                    <Stack sx={{ color: mode ? 'white' : 'black', width: '550px', height: '250px', overflow: 'auto' }}>
+                        <List>
+                            {resultsSearch.map((item, index) => (
+                                <ListItem key={index} sx={{ border: 'solid black 1px', mx: 1, display: 'flex', flexDirection: 'column' ,alignItems : 'center' , width : '500px' }}>
+                                    <Typography>{item.title}</Typography>
+                                    <Typography>{item.category}</Typography>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Stack>
 
 
                 </Stack>

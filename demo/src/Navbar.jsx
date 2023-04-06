@@ -20,7 +20,6 @@ export default function Navbar() {
     customButton: {
       border: 'solid gray 1px',
       margin: '12px 10px',
-      // color: 'black  '
     }
   }
   return (

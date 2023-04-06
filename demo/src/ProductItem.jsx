@@ -1,7 +1,7 @@
 import { Button, Stack, Box, Paper, Typography, CircularProgress, Skeleton } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 import { getSelectedItem, getCart } from "./Redux/slice";
 
 
@@ -60,7 +60,7 @@ export default function ProductItem() {
                     </Box>
                     <Button onClick={() => {
                         dispatch(getSelectedItem(item.id))
-                    }} sx={styles.customButton} ><Link to={`/products/${item.id}`} style={{ textDecoration: 'none' , color : mode ? 'white' : 'black'}}>Buy Now</Link></Button>
+                    }} sx={styles.customButton} ><NavLink to={`/products/${item.id}`} style={{ textDecoration: 'none' , color : mode ? 'white' : 'black'}}>Buy Now</NavLink></Button>
 
                 </Paper>
             ))) : <Loading />}

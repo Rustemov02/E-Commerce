@@ -55,21 +55,3 @@ export default function Cart() {
         </ThemeProvider>
     )
 }
-
-
-{/* < div >
-{filteredCart.map((item, index) => {
-    <Stack key={index} direction='row' alignItems='center' justifyContent='space-evenly'>
-        <img style={{ width: 250 }} key={index} src={item.img} />
-
-        <Box >
-            <Typography>{item.title}</Typography>
-            <Typography> {item.quantity} X {item.price} = ${item.quantity * item.price}</Typography>
-        </Box>
-        <Button onClick={() => dispatch(increase(item.title))}>+</Button>
-        <Button onClick={() => dispatch(decrease(item.title))}>-</Button>
-    </Stack>
-
-
-})
-} </div> */}
