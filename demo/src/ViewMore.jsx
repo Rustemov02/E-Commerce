@@ -10,11 +10,9 @@ export default function ViewMore() {
 
     return (
         <Stack direction='row' alignItems='center' justifyContent='space-around' spacing={2} py={4}>
-            <img src={line} style={{ width: '500px' }} />
-            {/* <Button size="large" variant="outlined" sx={{borderColor : 'red' , color : 'black' , fontSize : 23 , fontWeight : 500  }}>View More</Button> */}
-            <Button size="large" variant='outlined' sx={{backgroundColor: mode ? 'black' : 'white' , borderColor : 'red' , color : mode ? 'white' : "black" , fontSize : 23 , fontWeight : 500}} > View More </Button>
-
-            <img src={line} style={{ width: '500px' }} />
+            <img src={line} style={{ width: '40%' , minWidth : 100}} />
+            <Button size="large" variant='outlined' sx={{backgroundColor: mode ? 'black' : 'white' , borderColor : 'red' , color : mode ? 'white' : "black" , fontSize : 23 , fontWeight : 500 , width : '15%' , minWidth : 200}} > View More </Button>
+            <img src={line} style={{ width: '40%' , minWidth : 100 }} />
         </Stack>
     )
 }

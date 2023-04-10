@@ -16,7 +16,7 @@ export default function Navbar() {
   const mode = useSelector(state => state.product.mode)
 
   return (
-    <Stack p={2} direction='row' flexWrap='wrap' justifyContent='space-evenly' alignItems='center' bgcolor={mode ? 'black' : 'white'}  >
+    <Stack p={2} direction='row' border={1} flexWrap='wrap' justifyContent='space-evenly' alignItems='center' bgcolor={mode ? 'black' : 'white'}  >
 
       {/* Logo */}
       <Box>
@@ -37,7 +37,7 @@ export default function Navbar() {
       <Stack spacing={2} direction='row'>
         <Button startIcon={<HowToReg style={{ color: 'red' }} />} variant="outlined" to='/register' style={{ border: "solid red 1px" }}  ><NavLink style={{ textDecoration: "none", color: mode ? "white" : 'black' }} to='/register'>Register / Login</NavLink></Button>
         <Button startIcon={<ShoppingCart style={{ color: 'red' }} />} variant="outlined" to='/register' style={{ border: "solid red 1px" }}><NavLink style={{ textDecoration: "none", color: mode ? "white" : 'black' }} to='/cart'>Cart({cart.length})</NavLink></Button>
-        <Button onClick={() => dispatch(changeMode())} >
+        <Button variant='outlined' style={{border : "solid red 1px"}} onClick={() => dispatch(changeMode())} >
           {mode ? < LightMode sx={{ color: 'red' }} /> : <DarkMode sx={{ color: 'red' }} />}
         </Button>
       </Stack>

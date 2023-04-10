@@ -18,9 +18,9 @@ export default function Commerce() {
         <ThemeProvider theme={theme}>
             <CssBaseline/>
             <>
-                <Home />
-                {/* <Announce />
-                <Products /> */}
+                {/* <Home />
+               <Announce /> */}
+                 <Products />
             </>
         </ThemeProvider>
     )

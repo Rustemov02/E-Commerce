@@ -50,7 +50,7 @@ export default function Products() {
             }
         },
         customLine: {
-            width: '850px',
+            width: '90%', 
             margin: 'auto',
             marginTop: 20
         }
@@ -71,7 +71,7 @@ export default function Products() {
                 <Typography variant="h4" sx={{ fontWeight: 600, margin: 'auto' }}>Latest Products</Typography>
                 <img src={line} style={styles.customLine} />
 
-                <Box sx={{ display: 'flex', flexDirection: 'row', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', display: 'flex', flexDirection: 'row', justifyContent: 'center' , flexWrap : 'wrap' }}>
                     {categories.map((item, index) => (
                         <Button
                             onClick={() => {
