@@ -9,8 +9,9 @@ import line from './images/line.svg'
 
 export default function Products() {
     const mode = useSelector(state => state.product.mode)
+    const dispatch = useDispatch()
     const theme = createTheme({
-        mode : mode ? 'dark' : 'light', 
+        mode: mode ? 'dark' : 'light',
         palette: {
             mode: mode ? 'dark' : 'light'
         }
@@ -42,7 +43,7 @@ export default function Products() {
             border: 'solid #EB3223 2px',
             backgroundColor: mode ? 'black' : 'white',
             margin: '8px 10px',
-            color:  mode ? 'white' : 'black',
+            color: mode ? 'white' : 'black',
             transition: '0.5s',
             '&:hover': {
                 border: "solid red 2px",
@@ -50,13 +51,11 @@ export default function Products() {
             }
         },
         customLine: {
-            width: '90%', 
+            width: '60%',
             margin: 'auto',
             marginTop: 20
         }
     }
-    const dispatch = useDispatch()
-    const product = useSelector(state => state.product.data)
 
     useEffect(() => {
         dispatch(fetchProduct(categories[0].link))
@@ -64,14 +63,11 @@ export default function Products() {
 
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline/>
+            <CssBaseline />
             <Stack paddingTop={10} direction='column' justifyContent='center' spacing={5}>
-
-
-                <Typography variant="h4" sx={{ fontWeight: 600, margin: 'auto' }}>Latest Products</Typography>
+                <Typography variant="h4" sx={{ fontWeight: 600, margin: 'auto', textAlign: "center" }}>Latest Products</Typography>
                 <img src={line} style={styles.customLine} />
-
-                <Box sx={{ display: 'flex', flexDirection: 'row', display: 'flex', flexDirection: 'row', justifyContent: 'center' , flexWrap : 'wrap' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
                     {categories.map((item, index) => (
                         <Button
                             onClick={() => {
@@ -83,7 +79,6 @@ export default function Products() {
                         </Button>
                     ))}
                 </Box>
-
                 <ProductItem />
                 <ViewMore />
                 <About />

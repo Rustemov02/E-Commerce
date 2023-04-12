@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Stack, Typography, Button, ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { increase, decrease } from "./Redux/slice";
 
 export default function Cart() {
-    const mode = useSelector(state => state.product.mode)
-
+    const mode = useSelector(state => state.product.mode) 
+    const cart = useSelector(state => state.product.cart)
+    const filteredCart = cart.filter((item, index) => index == cart.findIndex(elem => elem.title == item.title)) // remove duplicate items from cart
+    const dispatch = useDispatch()
     const theme = createTheme({
         palette: {
             mode: mode ? 'dark' : 'light'
         }
     })
-    const dispatch = useDispatch()
-    const cart = useSelector(state => state.product.cart)
-    const filteredCart = cart.filter((item, index) => index == cart.findIndex(elem => elem.title == item.title)) // remove duplicate items from cart
-
-    const arr = [1, 2, 3, 4, 5, 6];
-    // const isActive = false
 
     return (
         <ThemeProvider theme={theme}>
@@ -26,12 +22,13 @@ export default function Cart() {
                 {cart.length > 0 ? (
                     <Stack direction='column' justifyContent='space-around' alignItems='space-around'>
                         {filteredCart.map((item, index) => (
-                            <Stack key={index} direction='row' alignItems='center' justifyContent='center' spacing={5} py={3} my={4} bgcolor={mode ? '#2f3336' : '#ebf1f5'}  >
-                                <img style={{ width: 250, height: 350, borderRadius: 20, padding: 10 }} src={item.img} />
+                            <Stack key={index} direction='row' alignItems='center' justifyContent='center' flexWrap='wrap' gap={5} py={3} my={4} bgcolor={mode ? '#2f3336' : '#ebf1f5'}  >
 
-                                <Stack width={450}>
+                                <img style={{ width: '350px', height: 350, borderRadius: 20, padding: 10 }} src={item.img} />
+
+                                <Stack width={450} p={2}>
                                     <Box >
-                                        <Typography fontSize={24} fontWeight={700}>{item.title}</Typography>
+                                        <Typography fontSize={24} fontWeight={700} >{item.title}</Typography>
                                         <Typography variant="subtitle1" fontWeight={600}> {item.quantity} X {item.price} = ${item.quantity * item.price}</Typography>
                                     </Box>
 
@@ -48,7 +45,7 @@ export default function Cart() {
 
                     </Stack>
                 ) : (
-                    <Stack bgcolor={mode ? '#2f3336' : '#ebf1f5'} height='40vh' px={12} py={12}  > <Typography fontSize={40} >Your Cart is Empty...</Typography> </Stack>
+                    <Stack bgcolor={mode ? '#2f3336' : '#ebf1f5'} height='auto' px={12} py={12}  > <Typography fontSize={40} >Your Cart is Empty...</Typography> </Stack>
                 )}
 
             </Stack>

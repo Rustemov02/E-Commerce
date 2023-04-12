@@ -1,4 +1,4 @@
-import { Button, Stack, Box, Paper, Typography, CircularProgress, Skeleton } from "@mui/material";
+import { Button, Stack, Box, Paper, Typography, Skeleton } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -7,6 +7,9 @@ import { getSelectedItem } from "./Redux/slice";
 
 export default function ProductItem() {
     const mode = useSelector(state => state.product.mode)
+    const products = useSelector(state => state.product.data)
+    const isActive = useSelector(state => state.product.isActive)
+    const dispatch = useDispatch()
 
     const styles = {
         customPaper: {
@@ -27,18 +30,14 @@ export default function ProductItem() {
             whiteSpace: 'nowrap'
         },
         customButton: {
-            // border: 'solid gray 2px',
             border: 'solid #EB3223 2px',
             margin: '8px 10px',
             backgroundColor: mode ? 'black' : 'white'
         }
     }
-    const products = useSelector(state => state.product.data)
-    const isActive = useSelector(state => state.product.isActive)
-    const dispatch = useDispatch()
     const Loading = () => {
         return (
-            <Stack direction='row' justifyContent='space-evenly' spacing={3}>
+            <Stack direction='row' justifyContent='space-evenly' gap={3} flexWrap='wrap'>
                 <Skeleton width={230} height={650} />
                 <Skeleton width={230} height={650} />
                 <Skeleton width={230} height={650} />
@@ -48,7 +47,7 @@ export default function ProductItem() {
     }
 
     return (
-        <Stack direction='row' flexWrap='wrap' justifyContent='center' gap={2}>
+        <Stack direction='row' flexWrap='wrap' justifyContent='center' gap={2} >
 
             {isActive ? (products.map((item, index) => (
                 <Paper key={index} elevation={10} sx={styles.customPaper}>
@@ -64,9 +63,6 @@ export default function ProductItem() {
 
                 </Paper>
             ))) : <Loading />}
-
-
-
         </Stack >
     )
 }
